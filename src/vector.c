@@ -45,7 +45,7 @@ void vector_string_printf(char *str){
     }
 }
 
-char *vector_strcat(char *dest, char *origin){
+char *vector_string_strcat(char *dest, char *origin){
     int len_dest = vector_strlen(dest);
     int len_origin = vector_strlen(origin); 
     for(int i=0; i<len_origin; i++){
@@ -54,7 +54,7 @@ char *vector_strcat(char *dest, char *origin){
     }
 }
 
-int vetctor_strcmp(char *str1, char *str2){
+int vetctor_string_strcmp(char *str1, char *str2){
     int k = vector_strlen(str1);
     int w = vector_strlen(str2);
     int i=0;
@@ -75,3 +75,17 @@ int vetctor_strcmp(char *str1, char *str2){
 
 }
 
+char *vector_string_strcpy(char *dest, char *source){
+    int i=0;
+
+    while(*(source + i) != '\0'){
+        *(dest +i ) = *(source + i);
+        i++;
+    }
+    *(dest + i) = '\0';
+    return dest;
+}
+
+char *vector_string_to_upper(char *string){
+    
+}
