@@ -4,6 +4,6 @@
 
 int main(){
     char x[50] = {"Ola, bom dia!"};
-    char *p = vector_string_to_upper(x);
+    char *p = vector_string_to_lower(x);
     vector_string_printf(p);
 }

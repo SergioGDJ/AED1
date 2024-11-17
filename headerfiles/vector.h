@@ -10,4 +10,5 @@ char *vector_string_strcat(char *dest, char *origin);
 int vetctor_string_strcmp(char *str1, char *str2);
 char *vector_string_strcpy(char *dest, char *source);
 char *vector_string_to_upper(char *string);
+char *vector_string_to_lower(char *string);
 #endif

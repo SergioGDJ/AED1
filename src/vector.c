@@ -97,4 +97,14 @@ char *vector_string_to_upper(char *string){
     return string;
 }
 
-char *vector_string_to_upper(char *string){
+char *vector_string_to_lower(char *string){
+    int i=0;
+    while(*(string + i) != '\0'){
+        if(string[i] >= 'A' && string[i] <='Z'){
+            string[i] += 32;
+        }
+        i++;
+    }
+    return string;
+}
+
