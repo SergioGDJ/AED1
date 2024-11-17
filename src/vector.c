@@ -55,5 +55,23 @@ char *vector_strcat(char *dest, char *origin){
 }
 
 int vetctor_strcmp(char *str1, char *str2){
-    
+    int k = vector_strlen(str1);
+    int w = vector_strlen(str2);
+    int i=0;
+    int aux=0;
+    while(i < k && i<w){
+        if(str1[i] != str2[i]){
+            break;
+        }
+        i++;
+        aux++;
+    }
+    if(str1[aux] > str2[aux]) return 1;
+    else if (str1[aux] == str2[aux]) return 0;
+    else if(str1[aux] < str2[aux]) return -1;
+
+    if(k > w) return 1;
+    else return -1;
+
 }
+
