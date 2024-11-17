@@ -87,5 +87,14 @@ char *vector_string_strcpy(char *dest, char *source){
 }
 
 char *vector_string_to_upper(char *string){
-    
+    int i=0;
+    while(*(string + i) != '\0'){
+        if(string[i] >= 'a' && string[i] <='z'){
+            string[i] -= 32;
+        }
+        i++;
+    }
+    return string;
 }
+
+char *vector_string_to_upper(char *string){
