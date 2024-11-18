@@ -78,3 +78,7 @@ void SimpleLinkedList_print(SimpleLinkedList *L){
     else printf("NULL\n");
 }
 
+void SimpleLinkedList_remove(SimpleLinkedList *L, int val){
+    
+}
+
