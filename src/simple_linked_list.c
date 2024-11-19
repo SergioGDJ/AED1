@@ -79,6 +79,39 @@ void SimpleLinkedList_print(SimpleLinkedList *L){
 }
 
 void SimpleLinkedList_remove(SimpleLinkedList *L, int val){
-    
+    SNode *prev = NULL;
+    SNode *pos = L->begin;
+
+    while(pos != NULL && pos->val != val){
+        prev = pos; 
+        pos = pos->next;
+    }
+
+    if(pos != NULL){
+        if(L->end == pos){
+            L->end = prev; 
+        }
+        if(L->begin == pos){
+            L->begin == pos->next;
+        }
+        else {
+            prev->next = pos->next;
+        }
+        free(pos);
+    }
 }
 
+void SimpleLinkedList_destroy(SimpleLinkedList **L_ref){
+    SimpleLinkedList *L = *L_ref; 
+    SNode *p = L->begin;
+    SNode *aux = NULL;
+
+    while (p != NULL) {
+        aux = p;
+        p = p->next;
+        free(aux);
+    }
+    free(L);
+
+    *L_ref = NULL;
+}

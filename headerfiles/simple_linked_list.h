@@ -13,4 +13,5 @@ void SimpleLinkedList_add_tail(SimpleLinkedList *L, int val);
 void SimpleLinkedList_add_after(SimpleLinkedList *L, int node_val, int val);
 void SimpleLinkedList_print(SimpleLinkedList *L);
 void SimpleLinkedList_remove(SimpleLinkedList *L, int val);
+void SimpleLinkedList_destroy(SimpleLinkedList **L_ref);
 #endif
