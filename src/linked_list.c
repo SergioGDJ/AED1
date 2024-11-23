@@ -17,8 +17,13 @@ LinkedList *LinkedList_create(){
 	LinkedList *L = calloc(1, sizeof(LinkedList));
 
 }
-Node *Node_create(int val);
-void LinkedList_add_tail(LinkedList *L, int val);
+Node *Node_create(int val){
+	Node *p = calloc(1, sizeof(Node));
+	return p;
+}
+void LinkedList_add_tail(LinkedList *L, int val){
+	
+}
 void LinkedList_add_first(LinkedList *L, int val);
 bool LinkedList_is_empty(LinkedList *L);
 void LinkedList_print(LinkedList *L);
