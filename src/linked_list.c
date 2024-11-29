@@ -129,3 +129,12 @@ void LinkedList_print(LinkedList *L){
         return;
     }
 }
+
+void LinkedList_swap(LinkedList *L, Node *prev, Node *pos){
+    Node *aux; 
+    aux = prev; 
+    prev = pos; 
+    pos = aux; 
+    return;
+}
+
