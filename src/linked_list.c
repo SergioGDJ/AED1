@@ -129,3 +129,91 @@ void LinkedList_print(LinkedList *L){
         return;
     }
 }
+
+void LinkedList_swap(LinkedList *L, Node *prev, Node *pos){
+    if (prev == pos) return; 
+
+    if (prev->next == pos) {
+        prev->next = pos->next;
+        if (pos->next != NULL) {
+            pos->next->prev = prev;
+        } else {
+            L->end = prev; 
+        }
+
+        pos->prev = prev->prev;
+        if (prev->prev != NULL) {
+            prev->prev->next = pos;
+        } else {
+            L->begin = pos; 
+        }
+
+        pos->next = prev;
+        prev->prev = pos;
+
+        return;
+    }
+
+    Node *tempNext = prev->next;
+    Node *tempPrev = prev->prev;
+    if (prev->prev != NULL) {
+        prev->prev->next = pos;
+    } else {
+        L->begin = pos; 
+    }
+
+    if (prev->next != NULL) {
+        prev->next->prev = pos;
+    }
+
+    if (pos->prev != NULL) {
+        pos->prev->next = prev;
+    } else {
+        L->begin = prev; 
+    }
+
+    if (pos->next != NULL) {
+        pos->next->prev = prev;
+    }
+
+    prev->next = pos->next;
+    prev->prev = pos->prev;
+    
+    pos->next = tempNext;
+    pos->prev = tempPrev;
+
+    if (prev->next == NULL) {
+        L->end = prev;
+    }
+
+    if (pos->next == NULL) {
+        L->end = pos;
+    }
+
+}
+
+
+void LinkedList_sort_int_bubble_sort(LinkedList *L){
+    if (L == NULL || L->begin == NULL) {
+        return; 
+    }
+    
+    Node *pos;
+    Node *prev;
+    int counter;
+    
+    do {
+        counter = 0;
+        prev = L->begin;  
+        pos = prev->next; 
+        
+        while (pos != NULL) {
+            if (prev->primary_key->val > pos->primary_key->val) {
+                LinkedList_swap(L, prev, pos);
+                counter++;
+            }
+            prev = pos;  
+            pos = pos->next;
+        }
+    } while (counter > 0); 
+}

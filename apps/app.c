@@ -11,4 +11,6 @@ int main(){
     LinkedList_add_first(L, 20, NULL);
     LinkedList_add_first(L, 30, NULL);
     LinkedList_print(L);
+    LinkedList_sort_int_bubble_sort(L);
+    LinkedList_print(L);
 }
