@@ -7,9 +7,10 @@ typedef struct _linked_list LinkedList;
 typedef struct _content Content;
 LinkedList *LinkedList_create();
 bool LinkedList_is_empty(LinkedList *L);
-Node *Node_create(int val);
-void LinkedList_add_first(LinkedList *L, int val);
-void LinkedList_add_tail(LinkedList *L, int val);
+Node *Node_create(int val, char *name);
+void LinkedList_add_first(LinkedList *L, int val, char *name);
+void LinkedList_add_tail(LinkedList *L, int val, char *name);
 void Node_remove(Node **p_ref);
+void LinkedList_remove(LinkedList *L, int val, char *name);
 
 #endif

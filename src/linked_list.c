@@ -1,10 +1,11 @@
 #include"linked_list.h"
 #include<stdio.h>
 #include<stdlib.h>
-
+#include<string.h>
 
 typedef struct _content{
     int val;
+    char *name;
 } Content;
 
 typedef struct _node{
@@ -24,10 +25,12 @@ LinkedList *LinkedList_create(){
     return L;
 }
 
-Node *Node_create(int val){
+Node *Node_create(int val, char *name){
     Node *p = calloc(1, sizeof(Node));
     p->primary_key = calloc(1, sizeof(Content));
     p->primary_key->val = val;
+    p->primary_key->name = calloc(50, sizeof(char));
+    strcpy(p->primary_key->name, name);
     p->next = NULL;
     p->prev = NULL;
     return p;
@@ -38,8 +41,8 @@ bool LinkedList_is_empty(LinkedList *L){
     else return false; 
 }
 
-void LinkedList_add_first(LinkedList *L, int val){
-    Node *p = Node_create(val);
+void LinkedList_add_first(LinkedList *L, int val, char *name){
+    Node *p = Node_create(val, name);
     if(LinkedList_is_empty(L)){
         L->begin = p;
         L->end = p; 
@@ -54,7 +57,7 @@ void LinkedList_add_first(LinkedList *L, int val){
     }
 }
 
-void LinkedList_add_tail(LinkedList *L, int val){
+void LinkedList_add_tail(LinkedList *L, int val, char *name){
     Node *p = Node_create(val);
     if(LinkedList_is_empty(L)){
         L->begin = p;
@@ -76,10 +79,10 @@ void Node_remove(Node **p_ref){
     p_ref = NULL;
 }
 
-void LinkedList_remove(LinkedList *L, int val){
+void LinkedList_remove(LinkedList *L, int val, char *name){
     Node *prev = NULL;
     Node *pos = L->begin;
-    while(pos != NULL && pos->primary_key != val){
+    while((pos != NULL && pos->primary_key->val != val) || pos != NULL && strcmp(pos->primary_key->name, name)){
         prev = pos;
         pos = pos->next;
     } //pos aponta para o no a ser removido caso exista
@@ -113,10 +116,10 @@ void LinkedList_print(LinkedList *L){
     if(!LinkedList_is_empty(L)){
             Node *p = L->begin; 
         while(p != NULL){
-            printf("%d =>", p->primary_key->val);
+            printf("|-- %d --|\n| %s | ", p->primary_key->val, p->primary_key->name);
         }
         printf("NULL\n");
-        return;
+        
     }
     else {
         print("Linked list is empty\n");
