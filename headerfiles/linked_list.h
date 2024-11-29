@@ -1,5 +1,6 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
+
 #include<stdbool.h>
 
 typedef struct _node Node;
@@ -12,5 +13,6 @@ void LinkedList_add_first(LinkedList *L, int val, char *name);
 void LinkedList_add_tail(LinkedList *L, int val, char *name);
 void Node_remove(Node **p_ref);
 void LinkedList_remove(LinkedList *L, int val, char *name);
+void LinkedList_print(LinkedList *L);
 
 #endif

@@ -58,7 +58,7 @@ void LinkedList_add_first(LinkedList *L, int val, char *name){
 }
 
 void LinkedList_add_tail(LinkedList *L, int val, char *name){
-    Node *p = Node_create(val);
+    Node *p = Node_create(val, name);
     if(LinkedList_is_empty(L)){
         L->begin = p;
         L->end = p;
@@ -97,19 +97,21 @@ void LinkedList_remove(LinkedList *L, int val, char *name){
         else {
             prev->next = pos->next;
         }
-        Node_remove(pos);
+        Node_remove(&pos);
     }
 }
 
-void LinkedList_free(LinkedList *L){
+void LinkedList_free(LinkedList **L_ref){
+    LinkedList *L = *L_ref;
     Node *prev = NULL;
     Node *pos = L->begin;
     
     while(pos != NULL){
         prev = pos;
         pos = pos->next;
-        Node_remove(prev);
+        Node_remove(&prev);
     }
+    L_ref = NULL;
 }
 
 void LinkedList_print(LinkedList *L){
@@ -122,7 +124,7 @@ void LinkedList_print(LinkedList *L){
         
     }
     else {
-        print("Linked list is empty\n");
+        printf("Linked list is empty\n");
         return;
     }
 }
