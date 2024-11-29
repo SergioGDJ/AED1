@@ -79,7 +79,7 @@ void Node_remove(Node **p_ref){
 void LinkedList_remove(LinkedList *L, int val){
     Node *prev = NULL;
     Node *pos = L->begin;
-    while(pos != NULL && pos->primary_key != val){
+    while(pos != NULL && pos->primary_key->val != val){
         prev = pos;
         pos = pos->next;
     } //pos aponta para o no a ser removido caso exista
@@ -94,19 +94,21 @@ void LinkedList_remove(LinkedList *L, int val){
         else {
             prev->next = pos->next;
         }
-        Node_remove(pos);
+        Node_remove(&pos);
     }
 }
 
-void LinkedList_free(LinkedList *L){
+void LinkedList_free(LinkedList **L_ref){
+    LinkedList *L = *L_ref;
     Node *prev = NULL;
     Node *pos = L->begin;
     
     while(pos != NULL){
         prev = pos;
         pos = pos->next;
-        Node_remove(prev);
+        Node_remove(&prev);
     }
+    L_ref = NULL;
 }
 
 void LinkedList_print(LinkedList *L){
@@ -119,7 +121,7 @@ void LinkedList_print(LinkedList *L){
         return;
     }
     else {
-        print("Linked list is empty\n");
+        printf("Linked list is empty\n");
         return;
     }
 }
