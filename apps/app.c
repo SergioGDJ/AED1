@@ -7,4 +7,8 @@
 int main(){
     LinkedList *L = LinkedList_create();
     LinkedList_print(L);
+    LinkedList_add_first(L, 10, NULL);
+    LinkedList_add_first(L, 20, NULL);
+    LinkedList_add_first(L, 30, NULL);
+    LinkedList_print(L);
 }

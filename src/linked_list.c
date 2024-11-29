@@ -30,7 +30,7 @@ Node *Node_create(int val, char *name){
     p->primary_key = calloc(1, sizeof(Content));
     p->primary_key->val = val;
     p->primary_key->name = calloc(50, sizeof(char));
-    strcpy(p->primary_key->name, name);
+    if(name != NULL) strcpy(p->primary_key->name, name);
     p->next = NULL;
     p->prev = NULL;
     return p;
@@ -118,7 +118,8 @@ void LinkedList_print(LinkedList *L){
     if(!LinkedList_is_empty(L)){
             Node *p = L->begin; 
         while(p != NULL){
-            printf("|-- %d --|\n| %s | ", p->primary_key->val, p->primary_key->name);
+            printf("|%d  %s| => ", p->primary_key->val, p->primary_key->name);
+            p = p->next;
         }
         printf("NULL\n");
         
