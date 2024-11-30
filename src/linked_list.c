@@ -29,8 +29,15 @@ Node *Node_create(int val, char *name){
     Node *p = calloc(1, sizeof(Node));
     p->primary_key = calloc(1, sizeof(Content));
     p->primary_key->val = val;
-    p->primary_key->name = calloc(50, sizeof(char));
-    if(name != NULL) strcpy(p->primary_key->name, name);
+
+    if(name != NULL) {
+        long unsigned int len = strlen(name) + 1;  
+        p->primary_key->name = calloc(len, sizeof(char));
+        strcpy(p->primary_key->name, name);
+    } else {
+        p->primary_key->name = NULL;  
+    }
+
     p->next = NULL;
     p->prev = NULL;
     return p;
@@ -65,7 +72,7 @@ void LinkedList_add_tail(LinkedList *L, int val, char *name){
         L->size++;
     }
     else{
-        L->end = p;
+        L->end->next = p;
         p->prev = L->end;
         p->next = NULL;
         L->size++;
@@ -121,7 +128,7 @@ void LinkedList_print(LinkedList *L){
             printf("|%d  %s| => ", p->primary_key->val, p->primary_key->name);
             p = p->next;
         }
-        printf("NULL\n");
+        printf("|NULL|\n");
         
     }
     else {
