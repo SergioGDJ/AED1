@@ -16,6 +16,7 @@ void LinkedList_remove(LinkedList *L, int val, char *name);
 void LinkedList_print(LinkedList *L);
 void LinkedList_free(LinkedList **L_ref);
 void LinkedList_sort_int_bubble_sort(LinkedList *L);
+void LinkedList_sort_string_bubble_sort(LinkedList *L);
 void LinkedList_swap(LinkedList *L, Node *prev, Node *pos);
 
 #endif

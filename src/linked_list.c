@@ -30,9 +30,8 @@ Node *Node_create(int val, char *name){
     p->primary_key = calloc(1, sizeof(Content));
     p->primary_key->val = val;
 
-    if(name != NULL) {
-        long unsigned int len = strlen(name) + 1;  
-        p->primary_key->name = calloc(len, sizeof(char));
+    if(strlen(name) != 0) {
+        p->primary_key->name = calloc(50, sizeof(char));
         strcpy(p->primary_key->name, name);
     } else {
         p->primary_key->name = NULL;  
@@ -44,15 +43,14 @@ Node *Node_create(int val, char *name){
 }
 
 bool LinkedList_is_empty(LinkedList *L){
-    if(L->size == 0) return true;
-    else return false; 
+    return L->size==0; 
 }
 
 void LinkedList_add_first(LinkedList *L, int val, char *name){
     Node *p = Node_create(val, name);
     if(LinkedList_is_empty(L)){
         L->begin = p;
-        L->end = p; 
+        L->end = p;
         L->size++;
     }
     else{
@@ -74,6 +72,7 @@ void LinkedList_add_tail(LinkedList *L, int val, char *name){
     else{
         L->end->next = p;
         p->prev = L->end;
+        L->end = p;
         p->next = NULL;
         L->size++;
     }
@@ -125,8 +124,9 @@ void LinkedList_print(LinkedList *L){
     if(!LinkedList_is_empty(L)){
             Node *p = L->begin; 
         while(p != NULL){
-            printf("|%d  %s| => ", p->primary_key->val, p->primary_key->name);
+            printf("%s => ", p->primary_key->name);
             p = p->next;
+            // printf("Oi");
         }
         printf("|NULL|\n");
         
@@ -199,7 +199,6 @@ void LinkedList_swap(LinkedList *L, Node *prev, Node *pos){
 
 }
 
-
 void LinkedList_sort_int_bubble_sort(LinkedList *L){
     if (L == NULL || L->begin == NULL) {
         return; 
@@ -224,3 +223,30 @@ void LinkedList_sort_int_bubble_sort(LinkedList *L){
         }
     } while (counter > 0); 
 }
+
+void LinkedList_sort_string_bubble_sort(LinkedList *L){
+    if (L == NULL || L->begin == NULL) {
+        return; 
+    }
+    
+    Node *pos;
+    Node *prev;
+    int counter;
+    
+    do {
+        counter = 0;
+        prev = L->begin;  
+        pos = prev->next; 
+        
+        while (pos != NULL) {
+            if (strcmp(prev->primary_key->name, pos->primary_key->name) > 0) {
+                LinkedList_swap(L, prev, pos);
+                counter++;
+            }
+            prev = pos;  
+            pos = pos->next;
+        }
+    } while (counter > 0); 
+}
+
+
