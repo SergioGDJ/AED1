@@ -1,7 +1,6 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 #include<stdbool.h>
-#include "sort_linked_list.h"
 
 typedef struct _node Node;
 typedef struct _linked_list LinkedList;
